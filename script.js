@@ -51,7 +51,7 @@ function kali(matriksA, matriksB) {
   return matriksA.map(function(barisA) {
     return matriksB[0].map(function(_, j) {
       return barisA.reduce(function(sum, _, k) {
-        return sum + matriksA[j][k] * matriksB[k][j];
+        return sum + matriksA[k][j] * matriksB[k][j];
       }, 0);
     });
   });
