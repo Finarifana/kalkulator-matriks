@@ -20,13 +20,11 @@ function hitung(operation) {
 
 function parseMatriks(matriksStr) {
   try {
-    var baris = matriksStr.trim().split("\n");
-    var matriks = baris.map(function(baris) {
+    return matriksStr.trim().split("\n").map(function(baris) {
       return baris.trim().split(/\s+/).map(function(angka) {
         return parseFloat(angka);
       });
     });
-    return matriks;
   } catch (error) {
     console.error("Kesalahan saat memparsing matriks:", error);
     return null;
@@ -50,18 +48,13 @@ function kurang(matriksA, matriksB) {
 }
 
 function kali(matriksA, matriksB) {
-  var hasil = [];
-  for (var i = 0; i < matriksA.length; i++) {
-    hasil[i] = [];
-    for (var j = 0; j < matriksB[0].length; j++) {
-      var jumlah = 0;
-      for (var k = 0; k < matriksA[0].length; k++) {
-        jumlah += matriksA[i][k] * matriksB[k][j];
-      }
-      hasil[i][j] = jumlah;
-    }
-  }
-  return hasil;
+  return matriksA.map(function(barisA) {
+    return matriksB[0].map(function(_, j) {
+      return barisA.reduce(function(sum, _, k) {
+        return sum + matriksA[j][k] * matriksB[k][j];
+      }, 0);
+    });
+  });
 }
 
 function tampilkanHasil(matriks) {
@@ -69,4 +62,10 @@ function tampilkanHasil(matriks) {
     return baris.join(" ");
   }).join("\n");
   document.getElementById("hasil").value = hasilStr;
+}
+
+function hapusInput() {
+  document.getElementById("matriksA").value = "";
+  document.getElementById("matriksB").value = "";
+  document.getElementById("hasil").value = "";
 }
