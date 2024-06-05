@@ -1,72 +1,72 @@
-function calculate(operation) {
-  var matrixA = parseMatrix(document.getElementById("matrixA").value);
-  var matrixB = parseMatrix(document.getElementById("matrixB").value);
-  if (matrixA && matrixB) {
+function hitung(operation) {
+  var matriksA = parseMatriks(document.getElementById("matriksA").value);
+  var matriksB = parseMatriks(document.getElementById("matriksB").value);
+  if (matriksA && matriksB) {
     switch (operation) {
-      case 'add':
-        displayResult(add(matrixA, matrixB));
+      case 'tambah':
+        tampilkanHasil(tambah(matriksA, matriksB));
         break;
-      case 'subtract':
-        displayResult(subtract(matrixA, matrixB));
+      case 'kurang':
+        tampilkanHasil(kurang(matriksA, matriksB));
         break;
-      case 'multiply':
-        displayResult(multiply(matrixA, matrixB));
+      case 'kali':
+        tampilkanHasil(kali(matriksA, matriksB));
         break;
       default:
-        alert('Invalid operation');
+        alert('Operasi tidak valid');
     }
   }
 }
 
-function parseMatrix(matrixStr) {
+function parseMatriks(matriksStr) {
   try {
-    var rows = matrixStr.trim().split("\n");
-    var matrix = rows.map(function(row) {
-      return row.trim().split(/\s+/).map(function(num) {
-        return parseFloat(num);
+    var baris = matriksStr.trim().split("\n");
+    var matriks = baris.map(function(baris) {
+      return baris.trim().split(/\s+/).map(function(angka) {
+        return parseFloat(angka);
       });
     });
-    return matrix;
+    return matriks;
   } catch (error) {
-    console.error("Error parsing matrix:", error);
+    console.error("Kesalahan saat memparsing matriks:", error);
     return null;
   }
 }
 
-function add(matrixA, matrixB) {
-  return matrixA.map(function(row, i) {
-    return row.map(function(col, j) {
-      return col + matrixB[i][j];
+function tambah(matriksA, matriksB) {
+  return matriksA.map(function(baris, i) {
+    return baris.map(function(kolom, j) {
+      return kolom + matriksB[i][j];
     });
   });
 }
 
-function subtract(matrixA, matrixB) {
-  return matrixA.map(function(row, i) {
-    return row.map(function(col, j) {
-      return col - matrixB[i][j];
+function kurang(matriksA, matriksB) {
+  return matriksA.map(function(baris, i) {
+    return baris.map(function(kolom, j) {
+      return kolom - matriksB[i][j];
     });
   });
 }
 
-function multiply(matrixA, matrixB) {
-  var result = [];
-  for (var i = 0; i < matrixA.length; i++) {
-    result[i] = [];
-    for (var j = 0; j < matrixB[0].length; j++) {
-      var sum = 0;
-      for (var k = 0; k < matrixA[0].length; k++) {
-        sum += matrixA[i][k] * matrixB[k][j];
+function kali(matriksA, matriksB) {
+  var hasil = [];
+  for (var i = 0; i < matriksA.length; i++) {
+    hasil[i] = [];
+    for (var j = 0; j < matriksB[0].length; j++) {
+      var jumlah = 0;
+      for (var k = 0; k < matriksA[0].length; k++) {
+        jumlah += matriksA[i][k] * matriksB[k][j];
       }
-      result[i][j] = sum;
+      hasil[i][j] = jumlah;
     }
   }
-  return result;
+  return hasil;
 }
 
-function displayResult(matrix) {
-  var resultStr = matrix.map(function(row) {
-    return row.join(" ");
+function tampilkanHasil(matriks) {
+  var hasilStr = matriks.map(function(baris) {
+    return baris.join(" ");
   }).join("\n");
-  document.getElementById("result").value = resultStr;
+  document.getElementById("hasil").value = hasilStr;
 }
