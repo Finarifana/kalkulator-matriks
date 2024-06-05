@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matrix Calculator</title>
+  <title>Kalkulator Matriks</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="calculator">
-    <h2>Matrix Calculator</h2>
+  <div class="kalkulator">
+    <h2>Kalkulator Matriks</h2>
     <div class="input-section">
-      <textarea id="matrixA" placeholder="Enter Matrix A"></textarea>
-      <textarea id="matrixB" placeholder="Enter Matrix B"></textarea>
+      <textarea id="matriksA" placeholder="Masukkan Matriks A"></textarea>
+      <textarea id="matriksB" placeholder="Masukkan Matriks B"></textarea>
     </div>
     <div class="button-section">
-      <button onclick="calculate('add')">Add</button>
-      <button onclick="calculate('subtract')">Subtract</button>
-      <button onclick="calculate('multiply')">Multiply</button>
+      <button onclick="hitung('tambah')">Tambah</button>
+      <button onclick="hitung('kurang')">Kurang</button>
+      <button onclick="hitung('kali')">Kali</button>
+      <button onclick="hapusInput()">Hapus</button>
     </div>
     <div class="output-section">
-      <label for="result">Result:</label>
-      <textarea id="result" readonly></textarea>
+      <label for="hasil">Hasil:</label>
+      <textarea id="hasil" readonly></textarea>
     </div>
   </div>
   <script src="script.js"></script>
